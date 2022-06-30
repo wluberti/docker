@@ -1,0 +1,8 @@
+FROM node:alpine
+
+RUN apk update && apk add --no-cache bash npm
+
+# set work directory
+WORKDIR /app
+
+RUN npm install -g npm@latest

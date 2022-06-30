@@ -1,0 +1,26 @@
+{
+  "name": "mixup.nl",
+  "version": "1.0.0",
+  "description": "Volleyball mixup app",
+  "main": "tailwind.config.js",
+  "scripts": {
+    "test": "npm test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/wluberti/mixup.nl.git"
+  },
+  "keywords": [
+    "mix",
+    "volleyball"
+  ],
+  "author": "Wouter Luberti",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/wluberti/mixup.nl/issues"
+  },
+  "homepage": "https://github.com/wluberti/mixup.nl#readme",
+  "devDependencies": {
+    "tailwindcss": "^3.1.4"
+  }
+}
