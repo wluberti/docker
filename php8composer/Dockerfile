@@ -16,5 +16,6 @@ RUN apt-get update --fix-missing -y \
 
 WORKDIR /usr/local/bin
 
-RUN wget https://github.com/fabpot/local-php-security-checker/releases/download/v1.0.0/local-php-security-checker_1.0.0_linux_amd64 -o local-php-security-checker \
+RUN dpkgArch="$(dpkg --print-architecture)"; \
+    wget https://github.com/fabpot/local-php-security-checker/releases/download/v2.0.4/local-php-security-checker_2.0.4_darwin_${dpkgArch} -o local-php-security-checker \
     && chmod +x local-php-security-checker
