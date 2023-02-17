@@ -1,0 +1,14 @@
+version: '3'
+
+services:
+  php:
+          image: zenith/php8laravel
+          volumes:
+            - ./code:/code
+  nginx:
+          image: nginx:latest
+          ports:
+            - 8080:80
+          volumes:
+            - ./site.conf:/etc/nginx/conf.d/site.conf
+            - ./code:/code
