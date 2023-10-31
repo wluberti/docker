@@ -19,3 +19,5 @@ WORKDIR /usr/local/bin
 RUN dpkgArch="$(dpkg --print-architecture)"; \
     wget https://github.com/fabpot/local-php-security-checker/releases/download/v2.0.4/local-php-security-checker_2.0.4_darwin_${dpkgArch} -o local-php-security-checker \
     && chmod +x local-php-security-checker
+
+RUN docker-php-ext-install pdo_mysql
