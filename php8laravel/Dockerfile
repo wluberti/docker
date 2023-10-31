@@ -49,7 +49,7 @@ RUN apt-get update --fix-missing -y \
 RUN pecl channel-update https://pecl.php.net/channel.xml \
     && pecl install swoole
 
-COPY php.ini /etc/php/8.1/cli/conf.d/99-sail.ini
+COPY php.ini /etc/php/8.2/cli/conf.d/99-sail.ini
 
 RUN docker-php-ext-install pdo_mysql pdo
 
