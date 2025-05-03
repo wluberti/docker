@@ -1,13 +1,23 @@
-version: '3'
 services:
   php:
-          image: zenith/php8composer
-          volumes:
-            - ./code:/code
+    image: zenith/php8composer
+    volumes:
+      - ./code:/code
+    environment:
+      TZ: Europe/Amsterdam
+    networks:
+      - app-network
+
   nginx:
-          image: nginx:latest
-          ports:
-            - 8080:80
-          volumes:
-            - ./site.conf:/etc/nginx/conf.d/site.conf
-            - ./code:/code
+    image: nginx:latest
+    ports:
+      - 8080:80
+    volumes:
+      - ./site.conf:/etc/nginx/conf.d/site.conf
+      - ./code:/code
+    networks:
+      - app-network
+
+networks:
+  app-network:
+    driver: bridge

@@ -1,23 +1,29 @@
 FROM php:8-fpm
 
-ENV TZ=Europe/Amsterdam
-ENV DEBIAN_FRONTEND=nonintercative
+ENV TZ=Europe/Amsterdam \
+    DEBIAN_FRONTEND=noninteractive \
+    COMPOSER_ALLOW_SUPERUSER=1
 
-RUN apt-get update --fix-missing -y \
-    && apt-get dist-upgrade -y \
+# Install system dependencies and Composer
+RUN apt-get update -y && apt-get dist-upgrade -y \
     && apt-get install -y \
         git \
         unzip \
         wget \
         curl \
+        sqlite3 \
+        libsqlite3-dev \
+    && docker-php-ext-install pdo_mysql pdo_sqlite \
     && apt-get autoremove -y \
-    && php -r "readfile('http://getcomposer.org/installer');" | php -- --install-dir=/usr/bin/ --filename=composer \
+    && apt-get clean \
     && rm -rf /var/lib/apt/lists/*
 
-WORKDIR /usr/local/bin
+# Install Composer (official recommended way)
+COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 
-RUN dpkgArch="$(dpkg --print-architecture)"; \
-    wget https://github.com/fabpot/local-php-security-checker/releases/download/v2.0.4/local-php-security-checker_2.0.4_darwin_${dpkgArch} -o local-php-security-checker \
-    && chmod +x local-php-security-checker
+# Install local-php-security-checker
+RUN ARCH=$(dpkg --print-architecture) && \
+    wget -O /usr/local/bin/local-php-security-checker "https://github.com/fabpot/local-php-security-checker/releases/download/v2.0.4/local-php-security-checker_2.0.4_linux_${ARCH}" && \
+    chmod +x /usr/local/bin/local-php-security-checker
 
-RUN docker-php-ext-install pdo_mysql
+WORKDIR /var/www/html
