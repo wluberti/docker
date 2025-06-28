@@ -10,12 +10,13 @@ RUN apt-get update --fix-missing -y \
         unzip \
         wget \
         curl \
+        libcurl4-openssl-dev \
+        sqlite3 \
+        libsqlite3-dev \
     && apt-get autoremove -y \
     && php -r "readfile('http://getcomposer.org/installer');" | php -- --install-dir=/usr/bin/ --filename=composer \
     && rm -rf /var/lib/apt/lists/*
 
-WORKDIR /usr/local/bin
+WORKDIR /var/www/html
 
-RUN dpkgArch="$(dpkg --print-architecture)"; \
-    wget https://github.com/fabpot/local-php-security-checker/releases/download/v2.0.4/local-php-security-checker_2.0.4_darwin_${dpkgArch} -o local-php-security-checker \
-    && chmod +x local-php-security-checker
+RUN docker-php-ext-install pdo_mysql pdo_sqlite curl
