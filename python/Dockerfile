@@ -1,7 +1,7 @@
-FROM python:3.10
+FROM python:3.14
 
 ENV TZ=Europe/Amsterdam
-ENV DEBIAN_FRONTEND=nonintercative
+ENV DEBIAN_FRONTEND=noninteractive
 
 WORKDIR "/app"
 

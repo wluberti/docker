@@ -1,12 +1,12 @@
 services:
   php:
-          image: zenith/php8laravel
+          image: php:fpm
           volumes:
             - ./code:/code
   nginx:
           image: nginx:latest
           ports:
-            - 8080:80
+            - 8000:80
           volumes:
-            - ./site.conf:/etc/nginx/conf.d/default.conf
+            - ./site.conf:/etc/nginx/conf.d/site.conf
             - ./code:/code
