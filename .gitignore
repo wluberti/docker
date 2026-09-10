@@ -1,0 +1,16 @@
+# Docker volumes and data directories
+*/data/
+*/db_data/
+*/wp_data/
+*/config/
+
+# Editor/IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db

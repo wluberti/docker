@@ -1,0 +1,2 @@
+-- MySQL init scripts run in alphabetical order.
+-- Add your .sql or .sql.gz files here; they execute as root on first container start.
